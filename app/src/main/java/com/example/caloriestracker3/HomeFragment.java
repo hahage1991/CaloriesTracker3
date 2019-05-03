@@ -2,12 +2,14 @@ package com.example.caloriestracker3;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class HomeFragment extends Fragment {
     private View vHome;
     private TextView tv_date;
     private TextView tv_test;
+    private Button b2;
 
     // private EditText et_username;
 
@@ -39,6 +42,8 @@ public class HomeFragment extends Fragment {
         vHome = inflater.inflate(R.layout.fragment_home, container, false);
         tv_date = (TextView) vHome.findViewById(R.id.tv_date);
         tv_test = (TextView) vHome.findViewById(R.id.tv_test);
+        b2 = (Button) vHome.findViewById(R.id.button2);
+
 
         //Calendar calendar = Calendar.getInstance();
        // SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -58,7 +63,20 @@ public class HomeFragment extends Fragment {
         //tv_register.setOnClickListener(this);
         //tv_test.setText("all1");
         getConsumptionByID();
+       onClick(b2);
+
         return vHome;
+    }
+
+    public void onClick(View v)
+    {
+        if (v == b2)
+        {
+            Intent map = new Intent(getActivity(),MapsActivity.class);
+             startActivity(map);
+        }
+        return;
+
     }
 
     public void getConsumptionByID() {

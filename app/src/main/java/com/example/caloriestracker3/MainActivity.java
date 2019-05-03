@@ -2,10 +2,12 @@ package com.example.caloriestracker3;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import static android.support.v4.view.GravityCompat.START;
+import com.google.android.gms.maps.SupportMapFragment;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,7 +102,22 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_report) {
 
         } else if (id == R.id.nav_map) {
-            nextFragment = new MapFragment();
+
+         //   Intent map = new Intent(this,MapsActivity.class);
+         // startActivity(map);
+
+            /*
+
+             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.content_frame,new MapFragment());
+           fragmentTransaction.commit();
+           */
+
+
+           //nextFragment = new MapFragment();
+
+
 
         } else if (id == R.id.nav_share) {
 
@@ -101,10 +125,14 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+       FragmentManager fragmentManager = getFragmentManager();
+       fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
+
+       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }

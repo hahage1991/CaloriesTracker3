@@ -86,13 +86,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment nextFragment = null;
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            nextFragment = new HomeFragment();
         } else if (id == R.id.nav_login) {
             nextFragment = new LoginFragment();
 
         } else if (id == R.id.nav_report) {
 
         } else if (id == R.id.nav_map) {
+            nextFragment = new MapFragment();
 
         } else if (id == R.id.nav_share) {
 
@@ -100,7 +101,8 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

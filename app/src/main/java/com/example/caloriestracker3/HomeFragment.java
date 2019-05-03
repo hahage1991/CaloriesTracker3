@@ -2,6 +2,7 @@ package com.example.caloriestracker3;
 
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -18,7 +19,8 @@ import java.util.Date;
 public class HomeFragment extends Fragment {
 
     private View vHome;
-    private EditText tv_date;
+    private TextView tv_date;
+    private TextView tv_test;
 
     // private EditText et_username;
 
@@ -32,10 +34,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
 
-        vHome = inflater.inflate(R.layout.content_main, container, false);
-        tv_date = (EditText) vHome.findViewById(R.id.tv_date);
+        vHome = inflater.inflate(R.layout.fragment_home, container, false);
+        tv_date = (TextView) vHome.findViewById(R.id.tv_date);
+        tv_test = (TextView) vHome.findViewById(R.id.tv_test);
 
         //Calendar calendar = Calendar.getInstance();
        // SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -53,8 +56,31 @@ public class HomeFragment extends Fragment {
 
 
         //tv_register.setOnClickListener(this);
-
-
+        //tv_test.setText("all1");
+        getConsumptionByID();
         return vHome;
+    }
+
+    public void getConsumptionByID() {
+        //create an anonymous AsyncTask
+        //(http://localhost:8080/NewC/webresources/newc.consumption/{id})
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params)
+            {
+                return RestClient.findAllConsumption("1");                     //RestClient.getResidByuserame(loginUsername)
+            }
+
+            @Override
+            protected void onPostExecute(String all)
+            {
+
+                    tv_test.setText(all);
+                    //tv_test.setTextColor(Color.RED);
+
+
+
+            }
+        }.execute();
     }
 }

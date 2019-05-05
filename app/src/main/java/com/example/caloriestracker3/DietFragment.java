@@ -26,6 +26,9 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+// 8llDjLjWG9ySaPBuLEg8JQ0KpbHQlgP0mmBOO5Pu
+//9ae8d882ad174ff695a442be651703cd
+//45107871
 
 public class DietFragment extends Fragment {
 
@@ -35,6 +38,7 @@ public class DietFragment extends Fragment {
     private TextView tv_info;
     private ImageView foodpic;
     private Button bt_search;
+    private Button bt_search2;
 
     // private EditText et_password;
     //  private Button b_sign;
@@ -68,11 +72,6 @@ public class DietFragment extends Fragment {
                 {
                     JSONArray  res = new JSONArray ("["+SearchGoogleAPI.search(keyword)+"]");
 
-                    // JSONArray  results = res.getJSONArray("cse_image");
-                    // JSONArray res = new JSONArray(findpic());
-
-                    //  JSONArray  results = res.getJSONArray(0);
-
 
                     return res;
                 }
@@ -97,25 +96,8 @@ public class DietFragment extends Fragment {
                     JSONArray img =  pagemap.getJSONArray("cse_image");
                     JSONObject obj3 =  img.getJSONObject(0);
                     String pic1 =  obj3.getString("src");
-
-
-                    //  tv_info.setText(String.valueOf(pic1));
-
-
-                    //  for (int i = 0 ; i <  all.length(); i++) {
-                    //     JSONObject obj1 =  all.getJSONObject(0);
-                    //   JSONArray picArray = obj1.getJSONArray("cse_image");
-                    //JSONObject pic1obj = all.getJSONObject(0);
-                    //locations.add(location);
-                    // double lat2 = location.getDouble("lat");
-                    //double lng2 = location.getDouble("lng");
-                    //   String pic1 =  pic1obj.getString("src");
-
-                    // String pic1 = "https://www.foodiesfeed.com/wp-content/uploads/2019/02/raw-lean-beef-meat-with-herbs-and-spices.jpg";
-                    //  LatLng newlocation = new LatLng(lat2,  lng2);
                     Picasso.get().load(pic1).into(foodpic);
 
-                    //  }
 
                 }catch (Exception e){
                     e.printStackTrace();
@@ -128,16 +110,62 @@ public class DietFragment extends Fragment {
         }.execute();
         }
 
+        });
+
+        bt_search2 = (Button) vDiet.findViewById(R.id.bt_search2);
+        bt_search2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                final String keyword = et_food.getText().toString(); //create an anonymous AsyncTask
+
+                new AsyncTask<String, Void, JSONArray>() {
+                    @Override
+                    protected JSONArray doInBackground(String... params) {try
+                    {
+                        JSONArray  res = new JSONArray ("["+SearchGoogleAPI.search2(keyword)+"]");
 
 
+                        return res;
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                        return null;
+                    }
 
+                    }
 
+                    @Override
+                    protected void onPostExecute( JSONArray all)
+                    {
+
+                        try{
+
+                            JSONObject obj1 =  all.getJSONObject(0);
+                            JSONArray items =  obj1.getJSONArray("items");
+
+                            JSONObject obj2 =  items.getJSONObject(0);
+                            String info = obj2.getString("snippet");
+                            //JSONObject pagemap =  obj2.getJSONObject("pagemap");
+                            //JSONArray img =  pagemap.getJSONArray("cse_image");
+                            //JSONObject obj3 =  img.getJSONObject(0);
+                            //String pic1 =  obj3.getString("src");
+                            tv_info.setText(info);
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+
+                        }
+
+                        //tv_test.setTextColor(Color.RED);
+
+                    }
+                }.execute();
+            }
 
         });
 
-
         return vDiet;
-
 }
 }
 

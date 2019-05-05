@@ -32,7 +32,11 @@ public class SearchGoogleAPI {
         }catch (Exception e){ e.printStackTrace();
         }finally{ connection.disconnect();
         }
+        "https://www.googleapis.com/customsearch/v1?q="+keyword+"&cx=000737364164595517200:xzf3eyfibyo:49pdk4kd-bg&key=AIzaSyCzX79DkxzA3DCJijK9W0o4xMVGWAFI9Vs
+        https://cse.google.com/cse?cx=000737364164595517200:xzf3eyfibyo
         return textResult; */
+
+        //https://www.googleapis.com/customsearch/v1?q=beef&cx=000737364164595517200:xzf3eyfibyo&key=AIzaSyCzX79DkxzA3DCJijK9W0o4xMVGWAFI9Vs
         try {
             url = new URL("https://www.googleapis.com/customsearch/v1?q="+keyword+"&cx=000737364164595517200:49pdk4kd-bg&key=AIzaSyCzX79DkxzA3DCJijK9W0o4xMVGWAFI9Vs");
 
@@ -57,7 +61,47 @@ public class SearchGoogleAPI {
         return textResult;
 
 
+    }
 
-    }}
+    public static String search2(String keyword)
+    {
+        keyword = keyword.replace(" ", "+");
+        HttpURLConnection conn = null;
+        String textResult = "";
+        URL url = null;
+
+        HttpURLConnection connection = null;
+
+
+        //https://www.googleapis.com/customsearch/v1?q=beef&cx=000737364164595517200:xzf3eyfibyo&key=AIzaSyCzX79DkxzA3DCJijK9W0o4xMVGWAFI9Vs
+        try {
+            url = new URL("https://www.googleapis.com/customsearch/v1?q="+keyword+"&cx=000737364164595517200:xzf3eyfibyo&key=AIzaSyCzX79DkxzA3DCJijK9W0o4xMVGWAFI9Vs");
+
+//open the connection
+            conn = (HttpURLConnection) url.openConnection();
+//set the timeout
+            conn.setReadTimeout(10000);  //?
+            conn.setConnectTimeout(15000); //set the connection method to GET
+            conn.setRequestMethod("GET");
+//add http headers to set your response type to json
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json"); //Read the response
+            Scanner inStream = new Scanner(conn.getInputStream()); //read the input steream and store it as string
+            while (inStream.hasNextLine()) {
+                textResult += inStream.nextLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return textResult;
+
+
+    }
+
+
+
+}
 
 

@@ -35,13 +35,7 @@ import java.util.Scanner;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-   // Bundle b = getIntent().getExtras();
-   // String parksString=b.getString("Array");
 
-   // public static final String LOCATION_LIST_EXTRA = "locations";
-    //private ArrayList<JSONObject> locations = (ArrayList<location>) intent.getSerializableExtra(LOCATION_LIST_EXTRA);
-
-    //ArrayList<JSONObject> locations2 = getIntent().getExtras("locations");
 
 
 
@@ -66,63 +60,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double lat = getLat("60 Lawn road noble park vic Australia");
         double lon = getLng("60 Lawn road noble park vic Australia");
         LatLng Melbourne = new LatLng(lat, lon);
-        //LatLng Park = new LatLng(-37.9903169,  145.215391);
-        mMap.addMarker(new MarkerOptions().position(Melbourne).title("Melbourne"));
-       // mMap.addMarker(new MarkerOptions().position(Park).title("Park"));
-       /*
-        try {
-            JSONArray results = new JSONArray(parksString);
-
-            //JSONArray  results = response.getJSONArray("results");
-            for (int i = 0 ; i <  results .length(); i++) {
-                JSONObject obj =  results .getJSONObject(i);
-                JSONObject geo = obj.getJSONObject("geometry");
-                JSONObject location = geo.getJSONObject("location");
-                //locations.add(location);
-                double lat2 = location.getDouble("lat");
-                double lng2 = location.getDouble("lng");
-
-                String A =  obj.getString("name");
-                LatLng newlocation = new LatLng(lat2,  lng2);
-                mMap.addMarker(new MarkerOptions().position(newlocation).title("new"));
-                // String B = obj.getString("B");
-                //String C = obj.getString("C");
-                // System.out.println(A + " " + B + " " + C);
-
-
-            }
-
-
-
-
-        } catch (JSONException e)
-        {
-            e.printStackTrace();
-
-        }*/
-
-
-            /*
-       try {
-           JSONArray arr = new JSONArray(parksString);
-            for (JSONObject location : locations2) {
-                double lat2 = location.getDouble("lat");
-                double lng2 = location.getDouble("lng");
-                LatLng newlocation = new LatLng(lat2,  lng2);
-                mMap.addMarker(new MarkerOptions().position(newlocation).title("new"));
-
-
-                //String A = location.getString("name");
-            }
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-
-        }*/
+        mMap.addMarker(new MarkerOptions().position(Melbourne).title("Me"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Melbourne));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(8), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(11), 2000, null);
         getParks();
 
     }
@@ -200,29 +141,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         double lng2 = location.getDouble("lng");
 
                         String name =  obj.getString("name");
-                       // tv_test.setText(name);
-
-                        // String B = obj.getString("B");
-                        //String C = obj.getString("C");
-                        // System.out.println(A + " " + B + " " + C);
-                        // tv_test.setText(String.valueOf(parks));
                         LatLng newlocation = new LatLng(lat2,  lng2);
                         mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(newlocation).title(name));
 
-
-
                     }
-
 
                 }catch (Exception e){
                     e.printStackTrace();
 
                 }
 
-
                 //tv_test.setTextColor(Color.RED);
-
-
 
             }
         }.execute();

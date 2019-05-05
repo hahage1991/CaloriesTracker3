@@ -61,6 +61,19 @@ public class HomeFragment extends Fragment {
         tv_date = (TextView) vHome.findViewById(R.id.tv_date);
         tv_test = (TextView) vHome.findViewById(R.id.tv_test);
         b2 = (Button) vHome.findViewById(R.id.button2);
+        b2.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View view)
+                                  {
+                                      Intent map = new Intent(getActivity(),MapsActivity.class);
+                                      // Bundle b = new Bundle();
+                                      //b.putString("Array",parks.toString());
+                                      // map.putExtras(b);
+
+                                      startActivity(map);
+                                  }
+                              }
+            );
 
 
         //Calendar calendar = Calendar.getInstance();
@@ -82,12 +95,12 @@ public class HomeFragment extends Fragment {
         //tv_test.setText("all1");
        // getConsumptionByID();
        // findPark2();
-        getParks();
-      onClick(b2);
+      //  getParks();
+    //  onClick(b2);
 
         return vHome;
     }
-
+/*
     public void onClick(View v)
     {
         if (v == b2)
@@ -105,7 +118,7 @@ public class HomeFragment extends Fragment {
         }
         return;
 
-    }
+    }*/
 
     //private static final String BASE_URI = "http://118.138.108.194:8080/smartERDB/webresources";
 

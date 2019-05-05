@@ -101,8 +101,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_report) {
 
-        } else if (id == R.id.nav_map) {
+        } else if (id == R.id.nav_diet) {
 
+            nextFragment = new DietFragment();
          //   Intent map = new Intent(this,MapsActivity.class);
          // startActivity(map);
 

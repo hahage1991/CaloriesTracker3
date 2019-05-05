@@ -17,9 +17,13 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Report" />
         <item
-            android:id="@+id/nav_map"
+            android:id="@+id/nav_diet"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Map" />
+            android:title="Diet" />
+        <item
+            android:id="@+id/nav_steps"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Steps" />
     </group>
 
     <item android:title="Communicate">

@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Report" />
         <item
+            android:id="@+id/nav_barchart"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Bar chart" />
+        <item
             android:id="@+id/nav_diet"
             android:icon="@drawable/ic_menu_manage"
             android:title="Diet" />

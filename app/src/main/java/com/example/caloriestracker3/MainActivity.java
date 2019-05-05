@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity
             nextFragment = new LoginFragment();
 
         } else if (id == R.id.nav_report) {
+            nextFragment = new PiechartFragment();
 
         } else if (id == R.id.nav_diet) {
 
@@ -120,7 +121,11 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_barchart) {
+            nextFragment = new BarchartFragment();
+
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 

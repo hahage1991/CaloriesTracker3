@@ -20,7 +20,7 @@ public class MainFragment extends Fragment {
 
         Fragment nextFragment = new LoginFragment();
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content, nextFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, nextFragment).commit();
         return vMain;
     }
 

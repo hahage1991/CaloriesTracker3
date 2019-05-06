@@ -10,10 +10,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -25,6 +29,8 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 // 8llDjLjWG9ySaPBuLEg8JQ0KpbHQlgP0mmBOO5Pu
 //9ae8d882ad174ff695a442be651703cd
@@ -33,12 +39,12 @@ import java.util.Scanner;
 public class DietFragment extends Fragment {
 
     private View vDiet;
-
     private EditText et_food;
     private TextView tv_info;
     private ImageView foodpic;
     private Button bt_search;
     private Button bt_search2;
+
 
     // private EditText et_password;
     //  private Button b_sign;
@@ -49,10 +55,68 @@ public class DietFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         vDiet = inflater.inflate(R.layout.fragment_diet, container, false);
+        List<String> list = new ArrayList<String>();//添加category
+
+        final Spinner s1= (Spinner) vDiet.findViewById(R.id.category_spinner);
+        final Spinner s2=  (Spinner) vDiet.findViewById(R.id.food_spinner);
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, list);
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s1.setAdapter(spinnerAdapter);
+        s2.setAdapter(spinnerAdapter);
+        /*addButton.setOnClickListener(new View.OnClickListener() {
+            //including onClick() method
+            public void onClick(View v) {
+                EditText movieText= (EditText) findViewById(R.id.editText);
+                String newMovie=movieText.getText().toString();
+                spinnerAdapter.add(newMovie);
+                spinnerAdapter.notifyDataSetChanged();
+                sMovie.setSelection(spinnerAdapter.getPosition(newMovie));
+            } });*/
+        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int
+                    position, long id) {
+                String theNameOfCategory =
+                        parent.getItemAtPosition(position).toString();
+                if(theNameOfCategory != null){
+                    Toast.makeText(parent.getContext(), "the category is " +
+                                    theNameOfCategory,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int
+                    position, long id) {
+                String theNameOfFood =
+                        parent.getItemAtPosition(position).toString();
+                if(theNameOfFood != null){
+                    Toast.makeText(parent.getContext(), "the food is " +
+                                    theNameOfFood,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+
+
+
+
+
+
+
 
         // et_username = (EditText) vLogin.findViewById(R.id.et_username);
 

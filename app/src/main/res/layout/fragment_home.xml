@@ -14,6 +14,8 @@ android:padding="@dimen/activity_horizontal_margin">
         android:text="Calories Tracker"
         android:textSize="40.0dip" /> //gai zi ti
 
+
+
     <ImageView
         android:id="@+id/good"
         android:layout_width="wrap_content"
@@ -26,11 +28,21 @@ android:padding="@dimen/activity_horizontal_margin">
         android:layout_marginTop="23dp"
         app:srcCompat="@drawable/fitness" />
 
+    <TextView
+        android:id="@+id/tv_user"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/good"
+
+        android:drawableTint="#FF4081"
+        android:hint="Date"
+        android:singleLine="true" />
+
 <TextView
     android:id="@+id/tv_date"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/good"
+    android:layout_below="@+id/tv_user"
 
     android:drawableTint="#FF4081"
     android:hint="Date"

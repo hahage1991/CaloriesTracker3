@@ -3,6 +3,7 @@ package com.example.caloriestracker3;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -35,11 +36,14 @@ import java.util.Scanner;
 
 public class HomeFragment extends Fragment {
 
+
     private View vHome;
     private TextView tv_date;
     private TextView tv_test;
     private Button b2;
     private JSONArray parks;
+    private TextView tv_user;
+    private String loginUser;
 
     // private EditText et_username;
 
@@ -58,7 +62,10 @@ public class HomeFragment extends Fragment {
         findPark2();
 
         vHome = inflater.inflate(R.layout.fragment_home, container, false);
+        Bundle bundle = getArguments();
+        loginUser = bundle.getString("username");
         tv_date = (TextView) vHome.findViewById(R.id.tv_date);
+        tv_user = (TextView) vHome.findViewById(R.id.tv_user);
         tv_test = (TextView) vHome.findViewById(R.id.tv_test);
         b2 = (Button) vHome.findViewById(R.id.button2);
         b2.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +90,10 @@ public class HomeFragment extends Fragment {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         tv_date.setText(dateFormat.format(date));
+
+        tv_user.setText("Welcome " + loginUser);
+        tv_user.setTextSize(20);
+        tv_user.setTextColor(Color.BLUE);
 
 
         // et_username = (EditText) vLogin.findViewById(R.id.et_username);

@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/foodpic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="225dp"
+        android:layout_height="164dp"
         android:layout_below="@+id/tv_title"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginLeft="184dp"
         android:layout_marginTop="23dp"
         app:srcCompat="@drawable/fitness" />
 
@@ -49,5 +49,20 @@
         android:layout_below="@id/bt_search"
         android:text="Search details" />
 
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Seclect the category"
+        android:layout_below="@+id/bt_search2"
+        />
+
+    <Spinner
+        android:id="@+id/food_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Seclect the food"
+        android:layout_below="@+id/category_spinner"
+        />
 
 </RelativeLayout>
